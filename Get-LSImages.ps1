@@ -11,17 +11,17 @@ function Test-PwshIsNew {
 }
 
 function Test-ImageSizeGreater300k {
-	param ($File)
-	if ($File.Length -gt 300000) { 
+	param ($file)
+	if ($file.Length -gt 300000) { 
 		return $true 
 	}
 	return $false
 }
 
 function Convert-Image {
-	param ($File) 
-	if (Test-PwshIsNew) { $File = $File.BaseName }	
-	Copy-Item -Path $inboxPath$File -Destination $outboxPath$File".jpg"	
+	param ($file) 
+	if (Test-PwshIsNew) { $file = $file.BaseName }	
+	Copy-Item -Path $inboxPath$file -Destination $outboxPath$file".jpg"	
 }
 
 function Get-LSImages {    
