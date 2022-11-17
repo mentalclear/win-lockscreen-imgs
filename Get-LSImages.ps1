@@ -10,15 +10,23 @@ function Test-PwshIsNew {
 	return $true
 }
 
-function Convert-Images {
+function Test-ImageSizeGreater300k {
+	param ($File)
+	if ($File.Length -gt 300000) { 
+		return $true 
+	}
+	return $false
+}
+
+function Convert-Image {
 	param ($File) 
 	if (Test-PwshIsNew) { $File = $File.BaseName }	
 	Copy-Item -Path $inboxPath$File -Destination $outboxPath$File".jpg"	
 }
 
 function Get-LSImages {    
-	$inboxContent | ForEach-Object {			
-		Convert-Images -File $_
+	$inboxContent | ForEach-Object {
+		if ($(Test-ImageSizeGreater300k -File $_)) { Convert-Image -File $_ }
 	}
 }
 
