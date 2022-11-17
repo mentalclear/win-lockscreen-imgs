@@ -1,0 +1,1 @@
+### This is the fodler where all the .jpg will be dropped
